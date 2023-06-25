@@ -8,11 +8,6 @@ from plotly.subplots import make_subplots
 import datetime
 
 
-
-
-
-# streamlit_app.py
-
 import streamlit as st
 from st_files_connection import FilesConnection
 
@@ -36,7 +31,122 @@ st.title('KOSDAQ')
 
 
 
+# Create connection object and retrieve file contents.
+# Specify input format is a csv and to cache the result for 600 seconds.
+conn = st.experimental_connection('gcs', type=FilesConnection)
+stock = conn.read("data1-study1/stock_data.csv", input_format="csv", ttl=600)
 
+
+
+# # 데이터 수집
+# stock = pd.read_csv('Data/stock_data.csv')
+
+ticker_list = stock['corp_name'].unique()
+
+# ticker set
+ticker_nm = '095570'
+option = st.selectbox(
+    '원하는 종목을 선택하세요',
+    ticker_list
+#     ('Email', 'Home phone', 'Mobile phone')
+)
+
+naver_news = f'[{option}의 네이버 뉴스](https://search.naver.com/search.naver?where=news&sm=tab_jum&query={option})'
+
+daum_news = f'[{option}의 다음 뉴스](https://search.daum.net/search?w=news&nil_search=btn&DA=NTB&enc=utf8&cluster=y&cluster_page=1&q={option})'
+
+
+# market 표시
+market_nm = stock[stock['corp_name'] == option]['market'].to_list()[0]
+market_nm = f':red[{market_nm}]'
+
+
+
+
+
+## 폰트
+st.write('선택 종목:', option)
+st.write('Market:', market_nm)
+st.write(naver_news)
+st.write(daum_news)
+
+
+#stock_data set
+#stock_data = stock[stock['ticker'] == option]
+stock_data = stock[stock['corp_name'] == option]
+
+
+
+
+
+# plotly 시각화
+fig = make_subplots(specs=[[{"secondary_y": True}]])
+
+fig.add_trace(
+    go.Bar(
+        name = '거래량',
+        x = stock_data['날짜'],
+        y = stock_data['거래량'],
+        #marker = {'color':'black'}
+    )
+)
+
+fig.add_trace(
+    go.Scatter(
+        name = '종가',
+        x = stock_data['날짜'],
+        y = stock_data['종가'],
+        #marker = {'color': 'black'},
+        yaxis="y2"
+    )
+)
+
+fig.update_xaxes(
+    rangeslider_visible=True,
+    rangeselector=dict(
+        buttons=list([
+            dict(count=1, label="1m", step="month", stepmode="backward"),
+            dict(count=6, label="6m", step="month", stepmode="backward"),
+            dict(count=1, label="YTD", step="year", stepmode="todate"),
+            dict(count=1, label="1y", step="year", stepmode="backward"),
+            dict(step="all")
+        ])
+    )
+)
+
+
+fig.update_layout(
+    #title= '나이스평가정보 거래량 및 거래금액 <br><sup>단위(만원)</sup>',
+    title= f'{option} 거래량 및 종가',
+    
+    #title_font_family="맑은고딕",
+    title_font_size = 18,
+    hoverlabel=dict(
+        bgcolor='white',
+        font_size=15,
+    ),
+    hovermode="x unified",
+    template='plotly_white',
+    xaxis_tickangle=90,
+    yaxis_tickformat = ',',
+    legend = dict(orientation = 'h', xanchor = "center", x = 0.85, y=1.1), #Adjust legend position
+    barmode='group'
+)
+################################################################
+col1, col2 = st.columns([3, 1])
+# data = np.random.randn(10, 1)
+
+stock_data2 = stock_data.sort_values(by = ['날짜'] , ascending = False)
+stock_data3 = stock_data2[['날짜','종가']]
+stock_data_des =stock_data3.reset_index(drop = True)
+
+
+
+with col1:
+    st.plotly_chart(fig, use_container_width=True)
+    
+with col2:
+    st.dataframe(stock_data_des)
 
 
     
