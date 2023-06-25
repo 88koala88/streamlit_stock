@@ -1,0 +1,7 @@
+streamlit
+pandas
+plotly==5.4.0
+# requirements.txt
+gcsfs
+# Direct pypi install coming soon
+git+https://github.com/streamlit/files-connection
