@@ -17,12 +17,7 @@ st.set_page_config(
     page_title="KOSPI 데이터",
     page_icon="🧊",
     layout="wide",
-    initial_sidebar_state="expanded",
-    menu_items={
-        'Get Help': 'https://www.extremelycoolapp.com/help',
-        'Report a bug': "https://www.extremelycoolapp.com/bug",
-        'About': "# This is a header. This is an *extremely* cool app!"
-    }
+    initial_sidebar_state="expanded"
 )
 
 
@@ -37,22 +32,22 @@ conn = st.experimental_connection('gcs', type=FilesConnection)
 stock = conn.read("data1-study1/kospi_data.csv", input_format="csv", ttl=600)
 kospi_month = conn.read("data1-study1/kospi_data_month.csv", input_format="csv", ttl=600)
 
-
-# # 데이터 수집
+#############################################
+###### 데이터 수집
+###############################################
 # stock = pd.read_csv('Data/stock_data.csv')
 
 ticker_list = stock['corp_name'].unique()
+
 
 # ticker set
 ticker_nm = '095570'
 option = st.selectbox(
     '원하는 종목을 선택하세요',
     ticker_list
-#     ('Email', 'Home phone', 'Mobile phone')
 )
 
 naver_news = f'[{option}의 네이버 뉴스](https://search.naver.com/search.naver?where=news&sm=tab_jum&query={option})'
-
 daum_news = f'[{option}의 다음 뉴스](https://search.daum.net/search?w=news&nil_search=btn&DA=NTB&enc=utf8&cluster=y&cluster_page=1&q={option})'
 
 
@@ -72,7 +67,6 @@ st.write(daum_news)
 
 
 #stock_data set
-#stock_data = stock[stock['ticker'] == option]
 stock_data = stock[stock['corp_name'] == option]
 kospi_month_fig = kospi_month[kospi_month['corp_name'] == option]
 
@@ -87,14 +81,12 @@ tab1, tab2  = st.tabs(["일", "월"])
 with tab1:
     st.header("일별 데이터")
     col1, col2 = st.columns([3, 1])
-    # data = np.random.randn(10, 1)
+
     
     stock_data2 = stock_data.sort_values(by = ['날짜'] , ascending = False)
     stock_data3 = stock_data2[['날짜','종가']]
     stock_data_des = stock_data3.reset_index(drop = True)
     daily_fig = func_list.daily_chart(stock_data, option)
-#     daily_fig = func_list.daily_chart(stock_data, option)
-    
     
     with col1:
         st.plotly_chart(daily_fig, use_container_width=True)
