@@ -74,7 +74,7 @@ st.write(daum_news)
 #stock_data set
 #stock_data = stock[stock['ticker'] == option]
 stock_data = stock[stock['corp_name'] == option]
-
+kospi_month_fig = kospi_month[kospi_month['corp_name'] == option]
 
 
 
@@ -105,10 +105,11 @@ with tab1:
 
 with tab2:
     st.header("월별 데이터")
-    monthly_fig = func_list.monthly_chart(kospi_month, option)
+    monthly_fig = func_list.monthly_chart(kospi_month_fig, option)
     
-    with col1:
+    aa, bb = st.columns([3,1])
+    with aa:
         st.plotly_chart(monthly_fig, use_container_width=True)
         
-    with col2:
-        st.dataframe(monthly_fig)
+    with bb:
+        st.dataframe(kospi_month_fig)
