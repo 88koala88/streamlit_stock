@@ -105,7 +105,12 @@ with tab1:
 with tab2:
     st.header("월별 데이터")
     monthly_fig = func_list.monthly_chart(kospi_month, option)
-       
+    
+    with col1:
+        st.plotly_chart(mothly_fig, use_container_width=True)
+        
+    with col2:
+        st.dataframe(monthly_fig)
 
 
 
