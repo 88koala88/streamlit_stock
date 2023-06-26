@@ -6,9 +6,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import datetime
-
-
-import streamlit as st
+import numpy as np
 from st_files_connection import FilesConnection
 
 
@@ -61,6 +59,16 @@ market_nm = stock[stock['corp_name'] == option]['market'].to_list()[0]
 market_nm = f':red[{market_nm}]'
 
 
+# tab
+
+tab1, tab2 = st.tabs(["주", "월"])
+
+tab1.subheader("주간 데이터")
+#tab1.line_chart(data)
+
+tab2.subheader("월간 데이터")
+#tab2.write(data)
+
 
 
 
@@ -74,6 +82,8 @@ st.write(daum_news)
 #stock_data set
 #stock_data = stock[stock['ticker'] == option]
 stock_data = stock[stock['corp_name'] == option]
+
+
 
 
 
