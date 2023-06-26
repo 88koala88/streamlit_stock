@@ -8,7 +8,7 @@ from plotly.subplots import make_subplots
 import datetime
 import numpy as np
 from st_files_connection import FilesConnection
-
+import func_list
 
 # 페이지 구성
 st.set_page_config(
@@ -90,6 +90,7 @@ with tab1:
 
 with tab2:
     st.header("월별 데이터")
+    func_list.daily_chart(kospi_data_month.csv)
        
 
 
