@@ -78,6 +78,20 @@ stock_data = stock[stock['corp_name'] == option]
 
 
 
+# tab
+
+tab1, tab2, tab3 = st.tabs(["일", "주", "월"])
+
+
+
+#tab1.subheader("주간 데이터")
+#tab1.line_chart(data)
+
+#tab2.subheader("월간 데이터")
+#tab2.write(data)
+
+
+
 
 # plotly 시각화
 fig = make_subplots(specs=[[{"secondary_y": True}]])
