@@ -59,16 +59,6 @@ market_nm = stock[stock['corp_name'] == option]['market'].to_list()[0]
 market_nm = f':red[{market_nm}]'
 
 
-# tab
-
-tab1, tab2 = st.tabs(["주", "월"])
-
-tab1.subheader("주간 데이터")
-#tab1.line_chart(data)
-
-tab2.subheader("월간 데이터")
-#tab2.write(data)
-
 
 
 
@@ -85,6 +75,19 @@ stock_data = stock[stock['corp_name'] == option]
 
 
 
+
+
+# tab
+
+tab1, tab2, tab3 = st.tabs(["일", "주", "월"])
+
+
+
+#tab1.subheader("주간 데이터")
+#tab1.line_chart(data)
+
+#tab2.subheader("월간 데이터")
+#tab2.write(data)
 
 
 
