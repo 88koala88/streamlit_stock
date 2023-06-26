@@ -1,4 +1,5 @@
 import streamlit as st
+import func_list
 import pandas as pd
 # from pykrx import stock
 # from pykrx import bond
@@ -8,7 +9,8 @@ from plotly.subplots import make_subplots
 import datetime
 import numpy as np
 from st_files_connection import FilesConnection
-import func_list
+
+
 
 # 페이지 구성
 st.set_page_config(
@@ -33,7 +35,7 @@ st.title('KOSPI')
 # Specify input format is a csv and to cache the result for 600 seconds.
 conn = st.experimental_connection('gcs', type=FilesConnection)
 stock = conn.read("data1-study1/kospi_data.csv", input_format="csv", ttl=600)
-
+kospi_month = conn.read("data1-study1/kospi_data_month.csv", input_format="csv", ttl=600)
 
 
 # # 데이터 수집
@@ -78,8 +80,6 @@ stock_data = stock[stock['corp_name'] == option]
 
 
 # tab
-
-kospi_month = conn.read("data1-study1/kospi_data_month.csv", input_format="csv", ttl=600)
 
 
 tab1, tab2  = st.tabs(["일", "월"])
