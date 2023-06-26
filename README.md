@@ -2,4 +2,4 @@
 
 ![](main.PNG)
 
-- [streamlit link](https://88koala88.streamlit.app)
+- [streamlit link](https://stock-data.streamlit.app)
