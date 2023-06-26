@@ -92,11 +92,11 @@ with tab1:
     stock_data2 = stock_data.sort_values(by = ['날짜'] , ascending = False)
     stock_data3 = stock_data2[['날짜','종가']]
     stock_data_des = stock_data3.reset_index(drop = True)
-    daily_fig = fun_list.daily_chart(stock_data_des)
+    daily_fig = fun_list.daily_chart(stock_data)
     
     
     with col1:
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(daily_fig, use_container_width=True)
         
     with col2:
         st.dataframe(stock_data_des)
