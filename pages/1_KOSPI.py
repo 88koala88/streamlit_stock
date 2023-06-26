@@ -82,15 +82,16 @@ stock_data = stock[stock['corp_name'] == option]
 kospi_month = conn.read("data1-study1/kospi_data_month.csv", input_format="csv", ttl=600)
 
 
-tab1, tab2 = st.tabs(["일", "월"])
+tab1, tab2  = st.tabs(["일", "월"])
 
+with tab1:
+    st.header("일별 데이터")
+    
 
-tab1.subheader("일별 데이터")
-#tab1.line_chart(data)
+with tab2:
+    st.header("월별 데이터")
+       
 
-tab2.subheader("월별 데이터")
-tab2.line_chart(kospi_month)
-tab2.write(kospi_month)
 
 
 
