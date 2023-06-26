@@ -73,31 +73,43 @@ st.write(daum_news)
 #stock_data = stock[stock['ticker'] == option]
 stock_data = stock[stock['corp_name'] == option]
 
-kospi_month = conn.read("data1-study1/kospi_data_month.csv", input_format="csv", ttl=600)
 
 
-
-#fig
-daily_fig = func_list.daily_chart(stock_data) 
-monthly_fig = func_list.daily_chart(kospi_month) 
 
 
 # tab
+
+kospi_month = conn.read("data1-study1/kospi_data_month.csv", input_format="csv", ttl=600)
+
 
 tab1, tab2  = st.tabs(["일", "월"])
 
 with tab1:
     st.header("일별 데이터")
-
+    col1, col2 = st.columns([3, 1])
+    # data = np.random.randn(10, 1)
+    
+    stock_data2 = stock_data.sort_values(by = ['날짜'] , ascending = False)
+    stock_data3 = stock_data2[['날짜','종가']]
+    stock_data_des = stock_data3.reset_index(drop = True)
+    daily_fig = fun_list.daily_chart(stock_data_des)
+    
+    
+    with col1:
+        st.plotly_chart(fig, use_container_width=True)
+        
+    with col2:
+        st.dataframe(stock_data_des)
+    
 
 with tab2:
     st.header("월별 데이터")
-    st.plotly_chart(monthly_fig, use_container_width=True)
-    
+    monthly_fig = func_list.monthly_chart(kospi_month)
+       
 
-    
 
-#plotly 시각화
+
+# # plotly 시각화
 # fig = make_subplots(specs=[[{"secondary_y": True}]])
 
 # fig.add_trace(
@@ -150,21 +162,21 @@ with tab2:
 #     legend = dict(orientation = 'h', xanchor = "center", x = 0.85, y=1.1), #Adjust legend position
 #     barmode='group'
 # )
-################################################################
-col1, col2 = st.columns([3, 1])
-# data = np.random.randn(10, 1)
+# ################################################################
+# col1, col2 = st.columns([3, 1])
+# # data = np.random.randn(10, 1)
 
-stock_data2 = stock_data.sort_values(by = ['날짜'] , ascending = False)
-stock_data3 = stock_data2[['날짜','종가']]
-stock_data_des =stock_data3.reset_index(drop = True)
+# stock_data2 = stock_data.sort_values(by = ['날짜'] , ascending = False)
+# stock_data3 = stock_data2[['날짜','종가']]
+# stock_data_des =stock_data3.reset_index(drop = True)
 
 
 
-with col1:
-    st.plotly_chart(daily_fig, use_container_width=True)
+# with col1:
+#     st.plotly_chart(fig, use_container_width=True)
     
-with col2:
-    st.dataframe(stock_data_des)
+# with col2:
+#     st.dataframe(stock_data_des)
 
 
     
