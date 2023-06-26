@@ -64,7 +64,7 @@ def daily_chart(stock_data, option):
 
 
 
-def mothly_chart(stock_data, option):
+def monthly_chart(stock_data, option):
     # plotly 시각화
     fig = make_subplots(specs=[[{"secondary_y": True}]])
 

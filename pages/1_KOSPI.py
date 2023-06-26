@@ -108,7 +108,7 @@ with tab2:
     monthly_fig = func_list.monthly_chart(kospi_month, option)
     
     with col1:
-        st.plotly_chart(mothly_fig, use_container_width=True)
+        st.plotly_chart(monthly_fig, use_container_width=True)
         
     with col2:
         st.dataframe(monthly_fig)
