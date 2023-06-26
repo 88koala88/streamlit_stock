@@ -52,7 +52,7 @@ def daily_chart(stock_data):
         legend = dict(orientation = 'h', xanchor = "center", x = 0.85, y=1.1), #Adjust legend position
         barmode='group'
     )
-return fig
+    return fig
 
 
 
@@ -98,4 +98,4 @@ def mothly_chart(stock_data):
         legend = dict(orientation = 'h', xanchor = "center", x = 0.85, y=1.1), #Adjust legend position
         barmode='group'
     )
-return fig
+    return fig
