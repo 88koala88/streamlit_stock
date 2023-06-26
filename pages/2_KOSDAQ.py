@@ -34,7 +34,7 @@ st.title('KOSDAQ')
 # Create connection object and retrieve file contents.
 # Specify input format is a csv and to cache the result for 600 seconds.
 conn = st.experimental_connection('gcs', type=FilesConnection)
-stock = conn.read("data1-study1/stock_data.csv", input_format="csv", ttl=600)
+stock = conn.read("data1-study1/kosdaq_data.csv", input_format="csv", ttl=600)
 
 
 
