@@ -89,7 +89,7 @@ tab1.subheader("일별 데이터")
 #tab1.line_chart(data)
 
 tab2.subheader("월별 데이터")
-line_chart(kospi_month)
+tab2.line_chart(kospi_month)
 tab2.write(kospi_month)
 
 
