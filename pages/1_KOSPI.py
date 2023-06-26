@@ -92,7 +92,8 @@ with tab1:
     stock_data2 = stock_data.sort_values(by = ['날짜'] , ascending = False)
     stock_data3 = stock_data2[['날짜','종가']]
     stock_data_des = stock_data3.reset_index(drop = True)
-    daily_fig = func_list.daily_chart(stock_data, option)
+    daily_fig = func_list.daily_chart(stock_data)
+#     daily_fig = func_list.daily_chart(stock_data, option)
     
     
     with col1:
@@ -111,102 +112,3 @@ with tab2:
         
     with col2:
         st.dataframe(monthly_fig)
-
-
-
-# # plotly 시각화
-# fig = make_subplots(specs=[[{"secondary_y": True}]])
-
-# fig.add_trace(
-#     go.Bar(
-#         name = '거래량',
-#         x = stock_data['날짜'],
-#         y = stock_data['거래량'],
-#         #marker = {'color':'black'}
-#     )
-# )
-
-# fig.add_trace(
-#     go.Scatter(
-#         name = '종가',
-#         x = stock_data['날짜'],
-#         y = stock_data['종가'],
-#         #marker = {'color': 'black'},
-#         yaxis="y2"
-#     )
-# )
-
-# fig.update_xaxes(
-#     rangeslider_visible=True,
-#     rangeselector=dict(
-#         buttons=list([
-#             dict(count=1, label="1m", step="month", stepmode="backward"),
-#             dict(count=6, label="6m", step="month", stepmode="backward"),
-#             dict(count=1, label="YTD", step="year", stepmode="todate"),
-#             dict(count=1, label="1y", step="year", stepmode="backward"),
-#             dict(step="all")
-#         ])
-#     )
-# )
-
-
-# fig.update_layout(
-#     #title= '나이스평가정보 거래량 및 거래금액 <br><sup>단위(만원)</sup>',
-#     title= f'{option} 거래량 및 종가',
-    
-#     #title_font_family="맑은고딕",
-#     title_font_size = 18,
-#     hoverlabel=dict(
-#         bgcolor='white',
-#         font_size=15,
-#     ),
-#     hovermode="x unified",
-#     template='plotly_white',
-#     xaxis_tickangle=90,
-#     yaxis_tickformat = ',',
-#     legend = dict(orientation = 'h', xanchor = "center", x = 0.85, y=1.1), #Adjust legend position
-#     barmode='group'
-# )
-# ################################################################
-# col1, col2 = st.columns([3, 1])
-# # data = np.random.randn(10, 1)
-
-# stock_data2 = stock_data.sort_values(by = ['날짜'] , ascending = False)
-# stock_data3 = stock_data2[['날짜','종가']]
-# stock_data_des =stock_data3.reset_index(drop = True)
-
-
-
-# with col1:
-#     st.plotly_chart(fig, use_container_width=True)
-    
-# with col2:
-#     st.dataframe(stock_data_des)
-
-
-    
-
-    
-# col1.subheader("A wide column with a chart")
-# col1.plotly_chart(fig, use_container_width=True)
-
-# col2.subheader("A narrow column with the data")
-# col2.dataframe(stock_data)
-
-# st.dataframe(stock_data)
-# st.plotly_chart(fig, use_container_width=True)
-
-
-
-# streamlit.errors.StreamlitAPIException: This app has encountered an error. The original error message is redacted to prevent data leaks. Full error details have been recorded in the logs (if you're on Streamlit Cloud, click on 'Manage app' in the lower right of your app).
-# Traceback:
-# File "/home/appuser/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 552, in _run_script
-#     exec(code, module.__dict__)
-# File "/app/streamlit_study/pages/snp500.py", line 13, in <module>
-#     page_icon="🧊",
-# File "/home/appuser/venv/lib/python3.9/site-packages/streamlit/runtime/metrics_util.py", line 356, in wrapped_func
-#     result = non_optional_func(*args, **kwargs)
-# File "/home/appuser/venv/lib/python3.9/site-packages/streamlit/commands/page_config.py", line 225, in set_page_config
-#     ctx.enqueue(msg)
-# File "/home/appuser/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_run_context.py", line 90, in enqueue
-#     raise StreamlitAPIException(
