@@ -1,4 +1,4 @@
-def daily_cart(stock_data):
+def daily_chart(stock_data):
     # plotly 시각화
     fig = make_subplots(specs=[[{"secondary_y": True}]])
 
@@ -57,7 +57,7 @@ return fig
 
 
 
-def mothly_cart(stock_data):
+def mothly_chart(stock_data):
     # plotly 시각화
     fig = make_subplots(specs=[[{"secondary_y": True}]])
 

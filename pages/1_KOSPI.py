@@ -73,83 +73,83 @@ st.write(daum_news)
 #stock_data = stock[stock['ticker'] == option]
 stock_data = stock[stock['corp_name'] == option]
 
+kospi_month = conn.read("data1-study1/kospi_data_month.csv", input_format="csv", ttl=600)
 
 
+
+#fig
+daily_fig = func_list.daily_chart(stock_data) 
+monthly_fig = func_list.daily_chart(kospi_month) 
 
 
 # tab
-
-kospi_month = conn.read("data1-study1/kospi_data_month.csv", input_format="csv", ttl=600)
-
 
 tab1, tab2  = st.tabs(["일", "월"])
 
 with tab1:
     st.header("일별 데이터")
-    
+
 
 with tab2:
     st.header("월별 데이터")
-    func_list.daily_chart(kospi_data_month.csv)
-       
-
-
-
-
-
-# plotly 시각화
-fig = make_subplots(specs=[[{"secondary_y": True}]])
-
-fig.add_trace(
-    go.Bar(
-        name = '거래량',
-        x = stock_data['날짜'],
-        y = stock_data['거래량'],
-        #marker = {'color':'black'}
-    )
-)
-
-fig.add_trace(
-    go.Scatter(
-        name = '종가',
-        x = stock_data['날짜'],
-        y = stock_data['종가'],
-        #marker = {'color': 'black'},
-        yaxis="y2"
-    )
-)
-
-fig.update_xaxes(
-    rangeslider_visible=True,
-    rangeselector=dict(
-        buttons=list([
-            dict(count=1, label="1m", step="month", stepmode="backward"),
-            dict(count=6, label="6m", step="month", stepmode="backward"),
-            dict(count=1, label="YTD", step="year", stepmode="todate"),
-            dict(count=1, label="1y", step="year", stepmode="backward"),
-            dict(step="all")
-        ])
-    )
-)
-
-
-fig.update_layout(
-    #title= '나이스평가정보 거래량 및 거래금액 <br><sup>단위(만원)</sup>',
-    title= f'{option} 거래량 및 종가',
+    st.plotly_chart(monthly_fig, use_container_width=True)
     
-    #title_font_family="맑은고딕",
-    title_font_size = 18,
-    hoverlabel=dict(
-        bgcolor='white',
-        font_size=15,
-    ),
-    hovermode="x unified",
-    template='plotly_white',
-    xaxis_tickangle=90,
-    yaxis_tickformat = ',',
-    legend = dict(orientation = 'h', xanchor = "center", x = 0.85, y=1.1), #Adjust legend position
-    barmode='group'
-)
+
+    
+
+#plotly 시각화
+# fig = make_subplots(specs=[[{"secondary_y": True}]])
+
+# fig.add_trace(
+#     go.Bar(
+#         name = '거래량',
+#         x = stock_data['날짜'],
+#         y = stock_data['거래량'],
+#         #marker = {'color':'black'}
+#     )
+# )
+
+# fig.add_trace(
+#     go.Scatter(
+#         name = '종가',
+#         x = stock_data['날짜'],
+#         y = stock_data['종가'],
+#         #marker = {'color': 'black'},
+#         yaxis="y2"
+#     )
+# )
+
+# fig.update_xaxes(
+#     rangeslider_visible=True,
+#     rangeselector=dict(
+#         buttons=list([
+#             dict(count=1, label="1m", step="month", stepmode="backward"),
+#             dict(count=6, label="6m", step="month", stepmode="backward"),
+#             dict(count=1, label="YTD", step="year", stepmode="todate"),
+#             dict(count=1, label="1y", step="year", stepmode="backward"),
+#             dict(step="all")
+#         ])
+#     )
+# )
+
+
+# fig.update_layout(
+#     #title= '나이스평가정보 거래량 및 거래금액 <br><sup>단위(만원)</sup>',
+#     title= f'{option} 거래량 및 종가',
+    
+#     #title_font_family="맑은고딕",
+#     title_font_size = 18,
+#     hoverlabel=dict(
+#         bgcolor='white',
+#         font_size=15,
+#     ),
+#     hovermode="x unified",
+#     template='plotly_white',
+#     xaxis_tickangle=90,
+#     yaxis_tickformat = ',',
+#     legend = dict(orientation = 'h', xanchor = "center", x = 0.85, y=1.1), #Adjust legend position
+#     barmode='group'
+# )
 ################################################################
 col1, col2 = st.columns([3, 1])
 # data = np.random.randn(10, 1)
@@ -161,7 +161,7 @@ stock_data_des =stock_data3.reset_index(drop = True)
 
 
 with col1:
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(daily_fig, use_container_width=True)
     
 with col2:
     st.dataframe(stock_data_des)
