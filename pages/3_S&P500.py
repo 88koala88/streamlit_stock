@@ -8,6 +8,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import datetime
 
+
 st.set_page_config(
     page_title="S&P 500",
     layout="wide",
