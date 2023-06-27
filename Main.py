@@ -39,17 +39,17 @@ st.title('Main')
 ###Treemap
 
 import pandas as pd
-df = pd.read_csv('snp500_tree_df.csv')
 import plotly.express as px
 import numpy as np
 
+df = pd.read_csv('snp500_tree_df.csv')
 
 sector_nm = 'Information Technology'
 
-df = df[df['sector'] == sector_nm]
+df1 = df[df['sector'] == sector_nm]
 
 
-fig = px.treemap(df, path=[px.Constant(sector_nm), 'industry', 'corp_name'], values='Volume',
+fig = px.treemap(df1, path=[px.Constant(sector_nm), 'industry', 'corp_name'], values='Volume',
                   color='Volume', hover_data=['Volume'],
                   color_continuous_scale='RdBu',
                   color_continuous_midpoint=np.average(df['Volume'], weights=df['Volume']))
