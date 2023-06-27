@@ -12,6 +12,7 @@ from st_files_connection import FilesConnection
 
 
 
+
 # 페이지 구성
 st.set_page_config(
     page_title="KOSPI 데이터",
