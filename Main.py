@@ -59,7 +59,7 @@ df1 = df[df['sector'] == sector_nm]
     
 
 # st.plotly_chart(fig, use_container_width=True)
-st.dataframe(df1)
+# st.dataframe(df1)
 
 
 
