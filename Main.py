@@ -73,7 +73,8 @@ df1 = df[df['sector'] == sector_nm]
 # st.plotly_chart(fig, use_container_width=True)
 
 
-@st.experimental_memo()
+#@st.experimental_memo()
+@st.cache_data
 def get_chart_68636849():
     import plotly.express as px
     import numpy as np
