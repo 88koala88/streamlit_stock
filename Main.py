@@ -56,7 +56,6 @@ df1 = df[df['sector'] == sector_nm]
 
 # fig.update_layout(margin = dict(t=50, l=25, r=25, b=25))
 
-
     
 
 # st.plotly_chart(fig, use_container_width=True)
