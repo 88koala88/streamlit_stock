@@ -71,3 +71,29 @@ fig = px.treemap(df, path=[px.Constant("world"), 'continent', 'country'], values
 fig.update_layout(margin = dict(t=50, l=25, r=25, b=25))
 # fig.show()
 st.plotly_chart(fig, use_container_width=True)
+
+
+@st.experimental_memo
+def get_chart_68636849():
+    import plotly.express as px
+    import numpy as np
+#     df = px.data.gapminder().query("year == 2007")
+    fig = px.treemap(df1, path=[px.Constant(sector_nm), 'industry', 'corp_name'], values='Volume',
+                      color='Volume', hover_data=['Volume'],
+                      color_continuous_scale='RdBu',
+                      color_continuous_midpoint=np.average(df['Volume'], weights=df['Volume']))
+
+#     fig = px.treemap(df1, path=[px.Constant("world"), 'continent', 'country'], values='pop',
+#                       color='lifeExp', hover_data=['iso_alpha'],
+#                       color_continuous_scale='RdBu',
+#                       color_continuous_midpoint=np.average(df['lifeExp'], weights=df['pop']))
+    fig.update_layout(margin = dict(t=50, l=25, r=25, b=25))
+    st.plotly_chart(fig)
+
+#     tab1, tab2 = st.tabs(["Streamlit theme (default)", "Plotly native theme"])
+#     with tab1:
+#         st.plotly_chart(fig, theme="streamlit")
+#     with tab2:
+#         st.plotly_chart(fig, theme=None)
+
+
