@@ -73,7 +73,7 @@ df1 = df[df['sector'] == sector_nm]
 # st.plotly_chart(fig, use_container_width=True)
 
 
-@st.experimental_memo
+@st.experimental_memo()
 def get_chart_68636849():
     import plotly.express as px
     import numpy as np
@@ -89,7 +89,7 @@ def get_chart_68636849():
 #                       color_continuous_midpoint=np.average(df['lifeExp'], weights=df['pop']))
     fig.update_layout(margin = dict(t=50, l=25, r=25, b=25))
     
-st.plotly_chart(fig)
+    st.plotly_chart(fig)
 
 #     tab1, tab2 = st.tabs(["Streamlit theme (default)", "Plotly native theme"])
 #     with tab1:
