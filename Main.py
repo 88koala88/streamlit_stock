@@ -54,7 +54,7 @@ fig = px.treemap(df1, path=[px.Constant(sector_nm), 'industry', 'corp_name'], va
                   color_continuous_scale='RdBu',
                   color_continuous_midpoint=np.average(df['Volume'], weights=df['Volume']))
 
-fig.update_layout(margin = dict(t=50, l=25, r=25, b=25))
+# fig.update_layout(margin = dict(t=50, l=25, r=25, b=25))
 
     
 
