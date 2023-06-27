@@ -49,13 +49,19 @@ sector_nm = 'Information Technology'
 
 df = df[df['sector'] == sector_nm]
 
-fig = px.treemap(df, path=[px.Constant(sector_nm), 'industry', 'corp_name'], values='Volume',
+def treemap(df)
+
+    fig = px.treemap(df, path=[px.Constant(sector_nm), 'industry', 'corp_name'], values='Volume',
                   color='Volume', hover_data=['Volume'],
                   color_continuous_scale='RdBu',
                   color_continuous_midpoint=np.average(df['Volume'], weights=df['Volume']))
 
-fig.update_layout(margin = dict(t=50, l=25, r=25, b=25))
+    fig.update_layout(margin = dict(t=50, l=25, r=25, b=25))
 
+    return(fig)
+
+
+fig = treemap(df)
 
 st.plotly_chart(fig, use_container_width=True)
 
