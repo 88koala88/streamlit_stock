@@ -88,7 +88,8 @@ def get_chart_68636849():
 #                       color_continuous_scale='RdBu',
 #                       color_continuous_midpoint=np.average(df['lifeExp'], weights=df['pop']))
     fig.update_layout(margin = dict(t=50, l=25, r=25, b=25))
-    st.plotly_chart(fig)
+    
+st.plotly_chart(fig)
 
 #     tab1, tab2 = st.tabs(["Streamlit theme (default)", "Plotly native theme"])
 #     with tab1:
