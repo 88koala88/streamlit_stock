@@ -61,9 +61,8 @@ def treemap(df)
     return(fig)
 
 
-fig = treemap(df)
 
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(treemap, use_container_width=True)
 
 
 
