@@ -30,7 +30,7 @@ from google.cloud import storage
 
 
 # 서비스 계정 키 JSON 파일 경로
-key_path = glob.glob("/streamlit_stock/*.json")[0]
+key_path = glob.glob("streamlit_stock/*.json")[0]
 
 # Credentials 객체 생성
 credentials = service_account.Credentials.from_service_account_file(key_path)
@@ -58,7 +58,7 @@ ticker_nm = '005930'
 # In[5]:
 
 
-kor_ticker_list_df = pd.read_csv(f'streamilt_stock/data_crawler/kor_ticker_list.csv')
+kor_ticker_list_df = pd.read_csv(f'streamlit_stock/data_crawler/kor_ticker_list.csv')
 kor_ticker_list = kor_ticker_list_df['ticker']
 # In[23]:
 
@@ -78,10 +78,10 @@ def log_df(file_name, status):
         'statue': status
     }, index = [0])    
     
-    if not os.path.exists(f'streamilt_stock/data_crawler/kor_log_df.csv'):
-        log_df.to_csv(f'streamilt_stock/data_crawler/kor_log_df.csv', index = False, mode = 'w')
+    if not os.path.exists(f'streamlit_stock/data_crawler/kor_log_df.csv'):
+        log_df.to_csv(f'streamlit_stock/data_crawler/kor_log_df.csv', index = False, mode = 'w')
     else:
-        log_df.to_csv(f'streamilt_stock/data_crawler/kor_log_df.csv', index = False, mode = 'a', header = False)
+        log_df.to_csv(f'streamlit_stock/data_crawler/kor_log_df.csv', index = False, mode = 'a', header = False)
             
 
 
@@ -97,10 +97,10 @@ kor_stock_ohlcv = kor_stock_ohlcv.rename(columns =  {'티커':'ticker'})
 file_name = 'kor_stock_ohlcv'
 df = kor_stock_ohlcv
 
-if not os.path.exists(f'streamilt_stock/data_crawler/{file_name}_{today_date1}.csv'):
-    df.to_csv(f'streamilt_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='w')
+if not os.path.exists(f'streamlit_stock/data_crawler/{file_name}_{today_date1}.csv'):
+    df.to_csv(f'streamlit_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='w')
 else:
-    df.to_csv(f'streamilt_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='a', header=False)
+    df.to_csv(f'streamlit_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='a', header=False)
 
 
 # ### 시가총액 (배치용)
@@ -116,10 +116,10 @@ df = kor_market_cap
 file_name = 'kor_market_cap'
 df = kor_market_cap
 
-if not os.path.exists(f'streamilt_stock/data_crawler/{file_name}_{today_date1}.csv'):
-    df.to_csv(f'streamilt_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='w')
+if not os.path.exists(f'streamlit_stock/data_crawler/{file_name}_{today_date1}.csv'):
+    df.to_csv(f'streamlit_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='w')
 else:
-    df.to_csv(f'streamilt_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='a', header=False)
+    df.to_csv(f'streamlit_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='a', header=False)
 
 
 # ###   DIV/BPS/PER/EPS 조회 (매일 실행 되는 배치용)
@@ -139,10 +139,10 @@ kor_stock_fundamental['날짜'] = today_date2
 file_name = 'kor_stock_fundamental'
 df = kor_stock_fundamental
 
-if not os.path.exists(f'streamilt_stock/data_crawler/{file_name}_{today_date1}.csv'):
-    df.to_csv(f'streamilt_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='w')
+if not os.path.exists(f'streamlit_stock/data_crawler/{file_name}_{today_date1}.csv'):
+    df.to_csv(f'streamlit_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='w')
 else:
-    df.to_csv(f'streamilt_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='a', header=False)
+    df.to_csv(f'streamlit_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='a', header=False)
 
 
 # ### 일자별 거래실적 추이 (거래대금) 배치용
@@ -169,15 +169,15 @@ for buy_sell_type in buy_sell_type_list:
             
             df = kor_stock_trading_value_by_investor
             
-            if not os.path.exists(f'streamilt_stock/data_crawler/{file_name}_{today_date1}.csv'):
-                df.to_csv(f'streamilt_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='w')
+            if not os.path.exists(f'streamlit_stock/data_crawler/{file_name}_{today_date1}.csv'):
+                df.to_csv(f'streamlit_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='w')
             else:
-                df.to_csv(f'streamilt_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='a', header=False)
+                df.to_csv(f'streamlit_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='a', header=False)
             
             log_df(file_name, f'success_{buy_sell_type}')    
         except:
             log_df(file_name, f'fail_{buy_sell_type}')
-    time.sleep(300)
+    #time.sleep(300)
         
 print('거래실적 (거래대금)수집 완료')        
 
@@ -203,15 +203,15 @@ for buy_sell_type in buy_sell_type_list:
             
             df = kor_stock_trading_volume_by_date
             
-            if not os.path.exists(f'streamilt_stock/data_crawler/{file_name}_{today_date1}.csv'):
-                df.to_csv(f'streamilt_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='w')
+            if not os.path.exists(f'streamlit_stock/data_crawler/{file_name}_{today_date1}.csv'):
+                df.to_csv(f'streamlit_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='w')
             else:
-                df.to_csv(f'streamilt_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='a', header=False)
+                df.to_csv(f'streamlit_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='a', header=False)
             
             log_df(file_name, 'success')    
         except:
             log_df(file_name, 'fail')
-    time.sleep(300)
+    #time.sleep(300)
     
 print('거래실적 (거래량)수집 완료')         
 
@@ -241,7 +241,7 @@ print('거래실적 (거래량)수집 완료')
 storage_client = storage.Client(credentials = credentials, 
                          project = credentials.project_id)
 
-for data in glob.glob(f"streamilt_stock/data_crawler/*_{today_date1}.csv"):
+for data in glob.glob(f"streamlit_stock/data_crawler/*_{today_date1}.csv"):
     print('start')
     print(data)
     
