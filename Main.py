@@ -9,11 +9,13 @@ import datetime
 import streamlit as st
 from st_files_connection import FilesConnection
 
+
 # Create connection object and retrieve file contents.
 # Specify input format is a csv and to cache the result for 600 seconds.
 conn = st.experimental_connection('gcs', type=FilesConnection)
 kospi = conn.read("data1-study1/kospi_index.csv", input_format="csv", ttl=600)
 kosdaq= conn.read("data1-study1/kosdaq_index.csv", input_format="csv", ttl=600)
+
 
 
 
@@ -42,18 +44,25 @@ st.write('Vlog : https://koala88python.tistory.com')
 
 # 인덱스 차트
 
-df1 = kospi
-fig1 = px.line(df1, x="날짜", y="종가", title='코스피 지수')
+df1 = pd.DataFrame(kospi)
+st.header('코스피 지수')
+st.line_chart(df1, x='날짜', y='종가', width=0, height=0, use_container_width=True)
 
-st.plotly_chart(fig1, use_container_width=True, **kwargs)
 
-df2 = kosdaq
-fig2 = px.line(df2, x="날짜", y="종가", title='코스닥 지수')
+df2 = pd.DataFrame(kosdaq)
+st.header('코스닥 지수')
+st.line_chart(df2, x='날짜', y='종가', width=0, height=0, use_container_width=True)
+
+
+
+# fig1 = px.line(df1, x="날짜", y="종가", title='코스피 지수')
+
+# st.plotly_chart(fig1, use_container_width=True)
+
+# df2 = kosdaq
+# fig2 = px.line(df2, x="날짜", y="종가", title='코스닥 지수')
   
-st.plotly_chart(fig2, use_container_width=True, **kwargs)
-
- 
-   
+# st.plotly_chart(fig2, use_container_width=True)
 
 
 
