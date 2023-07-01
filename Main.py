@@ -34,7 +34,8 @@ st.set_page_config(
 st.title('Main')
 
 
-st.write('업데이트 중..')
+
+st.write('업데이트 중.. :sunglasses:')
 
 st.write('Github : https://github.com/88koala88/streamlit_stock')
 
