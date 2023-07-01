@@ -41,17 +41,24 @@ st.write('Vlog : https://koala88python.tistory.com')
 
 # 인덱스 차트
 
-st.header("코스피 지수")
-    st.line_chart(data=kospi, *, x='날짜', y='종가', width=0, height=0, use_container_width=True)
+df1 = kospi
+fig1 = px.line(df1, x="날짜", y="종가", title='코스피 지수')
+
+
+df2 = kosdaq
+fig2 = px.line(df2, x="날짜", y="종가", title='코스닥 지수')
+  
+
+st.header("Market Index")
+    col1, col2 = st.columns([1, 1])
     
-
-st.header("코스닥 지수")
-    st.line_chart(data=kosdaq, *, x='날짜', y='종가', width=0, height=0, use_container_width=True)
-    
+    with col1:
+        st.plotly_chart(fig1, use_container_width=True)
+        
+    with col2:
+        st.plotly_chart(fig2, use_container_width=True)
+ 
    
-   
-
-
 
 
 
