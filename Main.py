@@ -44,14 +44,14 @@ st.write('Vlog : https://koala88python.tistory.com')
 
 # 인덱스 차트
 
-df1 = pd.DataFrame(kospi)
-st.header('코스피 지수')
-st.line_chart(df1, x='날짜', y='종가', width=0, height=0, use_container_width=True)
+# df1 = pd.DataFrame(kospi)
+# st.header('코스피 지수')
+# st.line_chart(df1, x='날짜', y='종가', width=0, height=0, use_container_width=True)
 
 
-df2 = pd.DataFrame(kosdaq)
-st.header('코스닥 지수')
-st.line_chart(df2, x='날짜', y='종가', width=0, height=0, use_container_width=True)
+# df2 = pd.DataFrame(kosdaq)
+# st.header('코스닥 지수')
+# st.line_chart(df2, x='날짜', y='종가', width=0, height=0, use_container_width=True)
 
 
 
