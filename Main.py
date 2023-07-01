@@ -44,25 +44,24 @@ kosdaq= conn.read("data1-study1/kosdaq_index.csv", input_format="csv", ttl=600)
 
 # 인덱스 차트
 
-df1 = pd.DataFrame(kospi)
-st.header('코스피 지수')
-st.line_chart(df1, x='날짜', y='종가', width=0, height=0, use_container_width=True)
+# df1 = pd.DataFrame(kospi)
+# st.header('코스피 지수')
+# st.line_chart(df1, x='날짜', y='종가', width=0, height=0, use_container_width=True)
 
 
-df2 = pd.DataFrame(kosdaq)
-st.header('코스닥 지수')
-st.line_chart(df2, x='날짜', y='종가', width=0, height=0, use_container_width=True)
+# df2 = pd.DataFrame(kosdaq)
+# st.header('코스닥 지수')
+# st.line_chart(df2, x='날짜', y='종가', width=0, height=0, use_container_width=True)
 
 
+df1 = kospi
+fig1 = px.line(df1, x="날짜", y="종가", title='코스피 지수')
+st.plotly_chart(fig1, use_container_width=True)
 
-# fig1 = px.line(df1, x="날짜", y="종가", title='코스피 지수')
 
-# st.plotly_chart(fig1, use_container_width=True)
-
-# df2 = kosdaq
-# fig2 = px.line(df2, x="날짜", y="종가", title='코스닥 지수')
-  
-# st.plotly_chart(fig2, use_container_width=True)
+df2 = kosdaq
+fig2 = px.line(df2, x="날짜", y="종가", title='코스닥 지수')
+st.plotly_chart(fig2, use_container_width=True)
 
 
 
