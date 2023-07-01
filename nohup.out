@@ -1,1 +1,75 @@
 python3: can't open file '/home/kbch88/streamlit_stock/pykrx_crawler.py': [Errno 2] No such file or directory
+종목리스트 수집 시작
+종목리스트 수집 완료
+S&P 500 symbol list 수집 시작
+S&P 500 주가정보 수집 시작
+Traceback (most recent call last):
+  File "/home/kbch88/streamlit_stock/pykrx_crawling.py", line 99, in <module>
+    log_df(file_name, 'success')    
+NameError: name 'log_df' is not defined
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kbch88/streamlit_stock/pykrx_crawling.py", line 101, in <module>
+    log_df(file_name, 'fail')
+NameError: name 'log_df' is not defined
+종목리스트 수집 시작
+종목리스트 수집 완료
+S&P 500 symbol list 수집 시작
+S&P 500 주가정보 수집 시작
+HTTP Error 404: Not Found  - symbol "BRKB"not found or invalid periods
+HTTP Error 404: Not Found  - symbol "BFB"not found or invalid periods
+S&P 500 주가정보 수집 완료 
+종목별 시가총액 수집 시작
+종목별 시가총액 수집 완료
+주가정보 수집 시작
+주가정보 수집 완료
+DIV/BPS/PER/EPS 수집 시작
+DIV/BPS/PER/EPS 수집 완료
+거래실적 (거래대금)수집 시작
+거래실적 (거래대금)수집 완료
+거래실적 (거래량)수집 시작
+거래실적 (거래량)수집 완료
+start
+data_crawler/kor_stock_fundamental_20230628.csv
+success
+start
+data_crawler/kor_stock_trading_value_by_investor.csv
+success
+start
+data_crawler/kor_stock_fundamental.csv
+success
+start
+data_crawler/log_df.csv
+success
+start
+data_crawler/kor_stock_ohlcv_20230628.csv
+success
+start
+data_crawler/snp500_daily.csv
+success
+start
+data_crawler/kor_stock_trading_volume_by_date.csv
+success
+start
+data_crawler/kor_market_cap.csv
+success
+start
+data_crawler/kor_stock_ohlcv_month.csv
+success
+start
+data_crawler/kor_ticker_list.csv
+success
+start
+data_crawler/snp500_monthly.csv
+success
+start
+data_crawler/kor_market_cap_20230628.csv
+success
+start
+data_crawler/sp500.csv
+success
+start
+data_crawler/kor_stock_ohlcv.csv
+success

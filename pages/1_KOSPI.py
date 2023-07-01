@@ -53,7 +53,7 @@ daum_news = f'[{option}의 다음 뉴스](https://search.daum.net/search?w=news&
 
 
 # market 표시
-market_nm = stock[stock['corp_name'] == option]['market'].to_list()[0]
+market_nm = stock[stock['corp_name'] == option]['marke'].to_list()[0]
 market_nm = f':red[{market_nm}]'
 
 
@@ -62,7 +62,7 @@ market_nm = f':red[{market_nm}]'
 
 ## 폰트
 st.write('선택 종목:', option)
-st.write('Market:', market_nm)
+# st.write('Market:', market_nm)
 st.write(naver_news)
 st.write(daum_news)
 
