@@ -49,7 +49,7 @@ st.plotly_chart(fig1, use_container_width=True)
 df2 = kosdaq
 fig2 = px.line(df2, x="날짜", y="종가", title='코스닥 지수')
   
-st.plotly_chart(fig1, use_container_width=True)
+st.plotly_chart(fig2, use_container_width=True)
 
  
    
