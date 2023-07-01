@@ -54,18 +54,18 @@ kosdaq= conn.read("data1-study1/kosdaq_index.csv", input_format="csv", ttl=600)
 # st.line_chart(df2, x='날짜', y='종가', width=0, height=0, use_container_width=True)
 
 
-# red_string1 = st.markdown(":red[코스피 지수]")
-# red_string2 = st.markdown(":red[코스닥 지수]")
+red_string1 = st.markdown(":red[코스피 지수]")
+red_string2 = st.markdown(":red[코스닥 지수]")
 
 
 df1 = pd.DataFrame(kospi)
-fig1 = px.line(df1, x='날짜', y='종가', title = '코스피 지수')
+fig1 = px.line(df1, title = f'{red_string1}')
 st.plotly_chart(fig1, use_container_width=True)
 
     
 
 df2 = pd.DataFrame(kosdaq)
-fig2 = px.line(df2, x='날짜', y='종가', title = '코스닥 지수')
+fig2 = px.line(df2, title = f'{red_string2}')
 st.plotly_chart(fig2, use_container_width=True)
 
 
