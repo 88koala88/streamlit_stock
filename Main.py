@@ -10,13 +10,6 @@ import streamlit as st
 from st_files_connection import FilesConnection
 
 
-# Create connection object and retrieve file contents.
-# Specify input format is a csv and to cache the result for 600 seconds.
-conn = st.experimental_connection('gcs', type=FilesConnection)
-kospi = conn.read("data1-study1/kospi_index.csv", input_format="csv", ttl=600)
-kosdaq= conn.read("data1-study1/kosdaq_index.csv", input_format="csv", ttl=600)
-
-
 
 
 # 페이지 구성
@@ -40,18 +33,25 @@ st.write('Vlog : https://koala88python.tistory.com')
 
 
 
+# Create connection object and retrieve file contents.
+# Specify input format is a csv and to cache the result for 600 seconds.
+conn = st.experimental_connection('gcs', type=FilesConnection)
+kospi = conn.read("data1-study1/kospi_index.csv", input_format="csv", ttl=600)
+kosdaq= conn.read("data1-study1/kosdaq_index.csv", input_format="csv", ttl=600)
+
+
 
 
 # 인덱스 차트
 
-# df1 = pd.DataFrame(kospi)
-# st.header('코스피 지수')
-# st.line_chart(df1, x='날짜', y='종가', width=0, height=0, use_container_width=True)
+df1 = pd.DataFrame(kospi)
+st.header('코스피 지수')
+st.line_chart(df1, x='날짜', y='종가', width=0, height=0, use_container_width=True)
 
 
-# df2 = pd.DataFrame(kosdaq)
-# st.header('코스닥 지수')
-# st.line_chart(df2, x='날짜', y='종가', width=0, height=0, use_container_width=True)
+df2 = pd.DataFrame(kosdaq)
+st.header('코스닥 지수')
+st.line_chart(df2, x='날짜', y='종가', width=0, height=0, use_container_width=True)
 
 
 
