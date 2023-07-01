@@ -44,19 +44,13 @@ st.write('Vlog : https://koala88python.tistory.com')
 df1 = kospi
 fig1 = px.line(df1, x="날짜", y="종가", title='코스피 지수')
 
+st.plotly_chart(fig1, use_container_width=True)
 
 df2 = kosdaq
 fig2 = px.line(df2, x="날짜", y="종가", title='코스닥 지수')
   
+st.plotly_chart(fig1, use_container_width=True)
 
-st.header("Market Index")
-    col1, col2 = st.columns([1, 1])
-    
-    with col1:
-        st.plotly_chart(fig1, use_container_width=True)
-        
-    with col2:
-        st.plotly_chart(fig2, use_container_width=True)
  
    
 
