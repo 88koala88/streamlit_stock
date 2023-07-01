@@ -59,13 +59,13 @@ red_string2 = st.markdown(":red[코스닥 지수]")
 
 
 df1 = pd.DataFrame(kospi)
-fig1 = px.line(df1, title = f'{red_string1}')
+fig1 = px.line(df1, x='날짜', y='종가', title = f'{red_string2}')
 st.plotly_chart(fig1, use_container_width=True)
 
     
 
 df2 = pd.DataFrame(kosdaq)
-fig2 = px.line(df2, title = f'{red_string2}')
+fig2 = px.line(df2, x='날짜', y='종가', title = f'{red_string2}')
 st.plotly_chart(fig2, use_container_width=True)
 
 
