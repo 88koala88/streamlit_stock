@@ -41,6 +41,8 @@ price_change = conn.read("data1-study1/price_index.csv", input_format="csv", ttl
 
 today_date = price_change['날짜'].astype(str).to_list()[0]
 
+price_change['type'] = price_change['type'].astype(str)
+
 # 등락률
 kospi_change_value = price_change[price_change['type'] == '1001']['종가'].to_list()[0]
 kosdaq_change_value = price_change[price_change['type'] == '2001']['종가'].to_list()[0]
