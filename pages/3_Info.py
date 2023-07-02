@@ -17,7 +17,6 @@ image = Image.open('Data/arc.png')
 # if st.button('아키텍쳐(클릭)', use_container_width=True):
 st.image(image, caption='대시보드 데이터 아키텍쳐')
 
-st.title('---')
 
 st.title('주가 데이터 대시보드 Blog List')
 

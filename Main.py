@@ -26,6 +26,7 @@ st.set_page_config(
     }
 )
 
+st.title('주가 데이터 대시보드')
 
 
 # Create connection object and retrieve file contents.
