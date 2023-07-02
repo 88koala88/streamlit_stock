@@ -1,4 +1,5 @@
 import streamlit as st
+import os 
 # import func_list
 # import pandas as pd
 # # from pykrx import stock
@@ -11,8 +12,9 @@ import streamlit as st
 # from st_files_connection import FilesConnection
 
 
-
-image = Image.open('streamlit_stock/Data/arc.png')
+c_pwd = os.getcwd()
+st.write(c_pwd)
+# image = Image.open('streamlit_stock/Data/arc.png')
 # if st.button('아키텍쳐(클릭)', use_container_width=True):
 st.image(image, caption='대시보드 데이터 아키텍쳐')
 
