@@ -9,7 +9,8 @@ import streamlit as st
 # import datetime
 # import numpy as np
 # from st_files_connection import FilesConnection
-
+import streamlit as st
+from PIL import Image
 
 
 image = Image.open('Data/arc.png')
