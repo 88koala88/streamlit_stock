@@ -37,7 +37,9 @@ kosdaq= conn.read("data1-study1/kosdaq_index.csv", input_format="csv", ttl=600)
 price_change = conn.read("data1-study1/price_index.csv", input_format="csv", ttl=600)
 
 
-today_date = price_change['날짜'].unique().to_list()[0]
+# oday_date = price_change['날짜'].unique().to_list()[0]
+
+today_date = price_change['날짜'].astype(str).to_list()[0]
 
 # 등락률
 kospi_change_value = price_change[price_change['type'] == '1001']['종가'].to_list()[0]
