@@ -27,17 +27,6 @@ st.set_page_config(
 )
 
 
-st.title('주가 데이터 대시보드')
-st.write('계속 업데이트 중.. :sunglasses:')
-st.write('Github : https://github.com/88koala88/streamlit_stock')
-st.write('Vlog : https://koala88python.tistory.com')
-
-
-image = Image.open('arc.png')
-if st.button('아키텍쳐(클릭)', use_container_width=True):
-    st.image(image, caption='대시보드 데이터 아키텍쳐')
-
-
 
 # Create connection object and retrieve file contents.
 # Specify input format is a csv and to cache the result for 600 seconds.
@@ -46,20 +35,20 @@ kospi = conn.read("data1-study1/kospi_index.csv", input_format="csv", ttl=600)
 kosdaq= conn.read("data1-study1/kosdaq_index.csv", input_format="csv", ttl=600)
 
 
-
-
 # Tab / 인덱스 차트
 
 
-tab1, tab2  = st.tabs(["KOSPI INDEX", "KOSDAQ INDEX"])
+# tab1, tab2  = st.tabs(["KOSPI INDEX", "KOSDAQ INDEX"])
 
-with tab1:
+col1, col2 = st.columns(2)
+
+with col1:
     df1 = pd.DataFrame(kospi)
     fig1 = px.line(df1, x='날짜', y='종가', title = '코스피 지수')
     st.plotly_chart(fig1, use_container_width=True)
     
 
-with tab2:
+with col1:
     df2 = pd.DataFrame(kosdaq)
     fig2 = px.line(df2, x='날짜', y='종가', title = '코스닥 지수')
     st.plotly_chart(fig2, use_container_width=True)
