@@ -63,7 +63,7 @@ def delta_color_func(aa):
 import streamlit as st
 st.write(f'{today_date} 기준')
 
-col11, col12 = st.columns(3)
+col11, col12 = st.columns(2)
 with col11:
     st.metric(label="KOSPI", 
               value=kospi_change_value,
