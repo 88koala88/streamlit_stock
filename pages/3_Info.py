@@ -1,5 +1,5 @@
 
-image = Image.open('Data/arc.png')
+image = Image.open('../Data/arc.png')
 # if st.button('아키텍쳐(클릭)', use_container_width=True):
 st.image(image, caption='대시보드 데이터 아키텍쳐')
 
