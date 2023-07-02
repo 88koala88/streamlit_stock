@@ -8,7 +8,8 @@ from plotly.subplots import make_subplots
 import datetime
 import streamlit as st
 from st_files_connection import FilesConnection
-
+import streamlit as st
+from PIL import Image
 
 
 
@@ -26,10 +27,15 @@ st.set_page_config(
 )
 
 
-st.title('Main')
-st.write('업데이트 중.. :sunglasses:')
+st.title('주가 데이터 대시보드')
+st.write('계속 업데이트 중.. :sunglasses:')
 st.write('Github : https://github.com/88koala88/streamlit_stock')
 st.write('Vlog : https://koala88python.tistory.com')
+
+
+image = Image.open('arc.png')
+if st.button(label(:red['아키텍쳐(클릭)'], use_container_width=True)):
+    st.image(image, caption='주가 데이터 대시보드 아키텍쳐')
 
 
 
@@ -42,29 +48,24 @@ kosdaq= conn.read("data1-study1/kosdaq_index.csv", input_format="csv", ttl=600)
 
 
 
-# 인덱스 차트
-
-# df1 = pd.DataFrame(kospi)
-# st.header('코스피 지수')
-# st.line_chart(df1, x='날짜', y='종가', width=0, height=0, use_container_width=True)
+# Tab / 인덱스 차트
 
 
-# df2 = pd.DataFrame(kosdaq)
-# st.header('코스닥 지수')
-# st.line_chart(df2, x='날짜', y='종가', width=0, height=0, use_container_width=True)
+tab1, tab2  = st.tabs(["KOSPI INDEX", "KOSDAQ INDEX"])
 
-
-
-
-df1 = pd.DataFrame(kospi)
-fig1 = px.line(df1, x='날짜', y='종가', title = '코스피 지수')
-st.plotly_chart(fig1, use_container_width=True)
-
+with tab1:
+    df1 = pd.DataFrame(kospi)
+    fig1 = px.line(df1, x='날짜', y='종가', title = '코스피 지수')
+    st.plotly_chart(fig1, use_container_width=True)
     
 
-df2 = pd.DataFrame(kosdaq)
-fig2 = px.line(df2, x='날짜', y='종가', title = '코스닥 지수')
-st.plotly_chart(fig2, use_container_width=True)
+with tab2:
+    df2 = pd.DataFrame(kosdaq)
+    fig2 = px.line(df2, x='날짜', y='종가', title = '코스닥 지수')
+    st.plotly_chart(fig2, use_container_width=True)
+
+
+
 
 
 
