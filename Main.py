@@ -26,7 +26,6 @@ st.set_page_config(
     }
 )
 
-st.title('주가 데이터 대시보드')
 
 
 # Create connection object and retrieve file contents.
@@ -54,9 +53,9 @@ kosdaq_change_ratio = price_change[price_change['type'] == '2001']['등락률'].
 
 def delta_color_func(aa):
     if aa < 0:
-        delta_color_value = 'inverse'
-    else:
         delta_color_value = 'normal'
+    else:
+        delta_color_value = 'inverse'
     return delta_color_value
     
                             
