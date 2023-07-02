@@ -17,11 +17,12 @@ image = Image.open('Data/arc.png')
 # if st.button('아키텍쳐(클릭)', use_container_width=True):
 st.image(image, caption='대시보드 데이터 아키텍쳐')
 
+st.title('---')
 
 st.title('주가 데이터 대시보드 Blog List')
 
-st.write('- Github : https://github.com/88koala88/streamlit_stock')
-st.write('- Blog : https://koala88python.tistory.com')
+st.write('Github : https://github.com/88koala88/streamlit_stock')
+st.write('Blog : https://koala88python.tistory.com')
 st.write('- [GCP Compute Engine 구축](https://koala88python.tistory.com/99)')
 st.write('- [Mac에서 GCP VM 인스턴스 활용하여 접속하기](https://koala88python.tistory.com/100)')
 st.write('- [GCP에서 SQL DB 구축하기](https://koala88python.tistory.com/102)')

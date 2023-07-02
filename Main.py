@@ -34,8 +34,42 @@ conn = st.experimental_connection('gcs', type=FilesConnection)
 kospi = conn.read("data1-study1/kospi_index.csv", input_format="csv", ttl=600)
 kosdaq= conn.read("data1-study1/kosdaq_index.csv", input_format="csv", ttl=600)
 
+price_change = conn.read("data1-study1/price_index.csv", input_format="csv", ttl=600)
 
+
+today_date = price_change['날짜'].unique().to_list()[0]
+
+# 등락률
+kospi_change_value = price_change[price_change['type'] == '1001']['종가'].to_list()[0]
+kosdaq_change_value = price_change[price_change['type'] == '2001']['종가'].to_list()[0]
+
+kospi_change_ratio = price_change[price_change['type'] == '1001']['등락률'].to_list()[0]
+kosdaq_change_ratio = price_change[price_change['type'] == '2001']['등락률'].to_list()[0]
+
+
+def delta_color_func(aa):
+    if aa < 0:
+        delta_color_value = 'inverse'
+    else:
+        delta_color_value = 'normal'
+    return delta_color_value
+    
+                            
 # Tab / 인덱스 차트
+import streamlit as st
+st.write(f'{today_date} 기준')
+
+col11, col12 = st.columns(3)
+with col11:
+    st.metric(label="KOSPI", 
+              value=kospi_change_value,
+              delta=kospi_change_ratio, 
+              delta_color=delta_color_func(kospi_change_ratio))
+with col12:
+    st.metric(label="KOSDAQ", 
+              value=kosdaq_change_value,
+              delta=kosdaq_change_ratio, 
+              delta_color=delta_color_func(kosdaq_change_ratio))
 
 
 # tab1, tab2  = st.tabs(["KOSPI INDEX", "KOSDAQ INDEX"])
@@ -48,7 +82,7 @@ with col1:
     st.plotly_chart(fig1, use_container_width=True)
     
 
-with col1:
+with col2:
     df2 = pd.DataFrame(kosdaq)
     fig2 = px.line(df2, x='날짜', y='종가', title = '코스닥 지수')
     st.plotly_chart(fig2, use_container_width=True)
