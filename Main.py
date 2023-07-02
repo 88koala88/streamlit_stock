@@ -34,7 +34,7 @@ st.write('Vlog : https://koala88python.tistory.com')
 
 
 image = Image.open('arc.png')
-if st.button(label(:red['아키텍쳐(클릭)'], use_container_width=True)):
+if st.button(label('아키텍쳐(클릭)'), use_container_width=True)):
     st.image(image, caption='주가 데이터 대시보드 아키텍쳐')
 
 
