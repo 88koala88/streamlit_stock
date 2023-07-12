@@ -30,7 +30,7 @@ from google.cloud import storage
 
 
 # 서비스 계정 키 JSON 파일 경로
-key_path = glob.glob("streamlit_stock/*.json")[0]
+key_path = glob.glob("/home/kbch88/streamlit_stock/*.json")[0]
 
 # Credentials 객체 생성
 credentials = service_account.Credentials.from_service_account_file(key_path)
@@ -58,7 +58,7 @@ ticker_nm = '005930'
 # In[5]:
 
 
-kor_ticker_list_df = pd.read_csv(f'streamlit_stock/data_crawler/kor_ticker_list.csv')
+kor_ticker_list_df = pd.read_csv(f'/home/kbch88/streamlit_stock/data_crawler/kor_ticker_list.csv')
 kor_ticker_list = kor_ticker_list_df['ticker']
 # In[23]:
 
@@ -78,10 +78,10 @@ def log_df(file_name, status):
         'statue': status
     }, index = [0])    
     
-    if not os.path.exists(f'streamlit_stock/data_crawler/kor_log_df.csv'):
-        log_df.to_csv(f'streamlit_stock/data_crawler/kor_log_df.csv', index = False, mode = 'w')
+    if not os.path.exists(f'/home/kbch88/streamlit_stock/data_crawler/kor_log_df.csv'):
+        log_df.to_csv(f'/home/kbch88/streamlit_stock/data_crawler/kor_log_df.csv', index = False, mode = 'w')
     else:
-        log_df.to_csv(f'streamlit_stock/data_crawler/kor_log_df.csv', index = False, mode = 'a', header = False)
+        log_df.to_csv(f'/home/kbch88/streamlit_stock/data_crawler/kor_log_df.csv', index = False, mode = 'a', header = False)
             
 
 
@@ -89,25 +89,28 @@ def log_df(file_name, status):
 
 # In[13]:
 
-
+file_name = 'kor_stock_ohlcv'
+print(f'{file_name} start')
 kor_stock_ohlcv = stock.get_market_ohlcv(today_date1,  market="ALL")
 kor_stock_ohlcv = kor_stock_ohlcv.reset_index()
 kor_stock_ohlcv = kor_stock_ohlcv.rename(columns =  {'티커':'ticker'})
 
-file_name = 'kor_stock_ohlcv'
+
 df = kor_stock_ohlcv
 
-if not os.path.exists(f'streamlit_stock/data_crawler/{file_name}_{today_date1}.csv'):
-    df.to_csv(f'streamlit_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='w')
+if not os.path.exists(f'/home/kbch88/streamlit_stock/data_crawler/{file_name}_{today_date1}.csv'):
+    df.to_csv(f'/home/kbch88/streamlit_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='w')
 else:
-    df.to_csv(f'streamlit_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='a', header=False)
+    df.to_csv(f'/home/kbch88/streamlit_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='a', header=False)
 
-
+print(f'{file_name} end')
+    
 # ### 시가총액 (배치용)
 
 # In[ ]:
 
-
+file_name = 'kor_market_cap'
+print(f'{file_name} start')
 kor_market_cap = stock.get_market_cap(today_date1,  market="ALL")
 kor_market_cap = kor_market_cap.reset_index()
 kor_market_cap = kor_market_cap.rename(columns =  {'티커':'ticker'})
@@ -116,21 +119,18 @@ df = kor_market_cap
 file_name = 'kor_market_cap'
 df = kor_market_cap
 
-if not os.path.exists(f'streamlit_stock/data_crawler/{file_name}_{today_date1}.csv'):
-    df.to_csv(f'streamlit_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='w')
+if not os.path.exists(f'/home/kbch88/streamlit_stock/data_crawler/{file_name}_{today_date1}.csv'):
+    df.to_csv(f'/home/kbch88/streamlit_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='w')
 else:
-    df.to_csv(f'streamlit_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='a', header=False)
-
-
-# ###   DIV/BPS/PER/EPS 조회 (매일 실행 되는 배치용)
-
-# In[16]:
-
-
-# ###   DIV/BPS/PER/EPS 조회 (매일 실행 되는 배치용)
+    df.to_csv(f'/home/kbch88/streamlit_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='a', header=False)
 
 # In[42]:
+print(f'{file_name} end')
+    
+# ###   DIV/BPS/PER/EPS 조회 (매일 실행 되는 배치용)
 
+file_name = 'kor_stock_fundamental'
+print(f'{file_name} start')
 kor_stock_fundamental = stock.get_market_fundamental(today_date1, market='ALL')
 kor_stock_fundamental = kor_stock_fundamental.reset_index()
 kor_stock_fundamental.rename(columns = {'티커':'ticker'}, inplace = True)
@@ -139,15 +139,22 @@ kor_stock_fundamental['날짜'] = today_date2
 file_name = 'kor_stock_fundamental'
 df = kor_stock_fundamental
 
-if not os.path.exists(f'streamlit_stock/data_crawler/{file_name}_{today_date1}.csv'):
-    df.to_csv(f'streamlit_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='w')
+if not os.path.exists(f'/home/kbch88/streamlit_stock/data_crawler/{file_name}_{today_date1}.csv'):
+    df.to_csv(f'/home/kbch88/streamlit_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='w')
 else:
-    df.to_csv(f'streamlit_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='a', header=False)
+    df.to_csv(f'/home/kbch88/streamlit_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='a', header=False)
 
 
 # ### 일자별 거래실적 추이 (거래대금) 배치용
 
 # In[ ]:
+
+print(f'{file_name} end')
+    
+# ###   DIV/BPS/PER/EPS 조회 (매일 실행 되는 배치용)
+
+file_name = 'kor_stock_trading_value_by_investor'
+print(f'{file_name} start')
 
 
 print('거래실적 (거래대금)수집 시작')
@@ -169,10 +176,10 @@ for buy_sell_type in buy_sell_type_list:
             
             df = kor_stock_trading_value_by_investor
             
-            if not os.path.exists(f'streamlit_stock/data_crawler/{file_name}_{today_date1}.csv'):
-                df.to_csv(f'streamlit_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='w')
+            if not os.path.exists(f'/home/kbch88/streamlit_stock/data_crawler/{file_name}_{today_date1}.csv'):
+                df.to_csv(f'/home/kbch88/streamlit_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='w')
             else:
-                df.to_csv(f'streamlit_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='a', header=False)
+                df.to_csv(f'/home/kbch88/streamlit_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='a', header=False)
             
             log_df(file_name, f'success_{buy_sell_type}')    
         except:
@@ -193,7 +200,7 @@ for buy_sell_type in buy_sell_type_list:
     for ticker_nm in kor_ticker_list:
         file_name = 'kor_stock_trading_volume_by_date'
         try:
-            kor_stock_trading_volume_by_date = stock.get_market_trading_volume_by_date(start_date, today_date1, 
+            kor_stock_trading_volume_by_date = stock.get_market_trading_volume_by_date(today_date1, today_date1, 
                                                                              ticker_nm, 
                                                                              detail=True,
                                                                              on =buy_sell_type)
@@ -203,10 +210,10 @@ for buy_sell_type in buy_sell_type_list:
             
             df = kor_stock_trading_volume_by_date
             
-            if not os.path.exists(f'streamlit_stock/data_crawler/{file_name}_{today_date1}.csv'):
-                df.to_csv(f'streamlit_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='w')
+            if not os.path.exists(f'/home/kbch88/streamlit_stock/data_crawler/{file_name}_{today_date1}.csv'):
+                df.to_csv(f'/home/kbch88/streamlit_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='w')
             else:
-                df.to_csv(f'streamlit_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='a', header=False)
+                df.to_csv(f'/home/kbch88/streamlit_stock/data_crawler/{file_name}_{today_date1}.csv', index=False, mode='a', header=False)
             
             log_df(file_name, 'success')    
         except:
@@ -241,7 +248,7 @@ print('거래실적 (거래량)수집 완료')
 storage_client = storage.Client(credentials = credentials, 
                          project = credentials.project_id)
 
-for data in glob.glob(f"streamlit_stock/data_crawler/*_{today_date1}.csv"):
+for data in glob.glob(f"/home/kbch88/streamlit_stock/data_crawler/*_{today_date1}.csv"):
     print('start')
     print(data)
     
