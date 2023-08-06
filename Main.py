@@ -62,7 +62,6 @@ def delta_color_func(aa):
 # Tab / 인덱스 차트
 import streamlit as st
 st.write('(데이터 업데이트 중..)')
-
 st.write(f'{today_date} 기준')
 
 col11, col12 = st.columns(2)
