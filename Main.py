@@ -15,7 +15,7 @@ from PIL import Image
 
 # 페이지 구성
 st.set_page_config(
-    page_title="주가 데이터 대시보드(업데이트 중)",
+    page_title="주가 데이터 대시보드",
     page_icon="🧊",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -61,6 +61,7 @@ def delta_color_func(aa):
                             
 # Tab / 인덱스 차트
 import streamlit as st
+st.title('데이터 업데이트 중..')
 st.write(f'{today_date} 기준')
 
 col11, col12 = st.columns(2)
